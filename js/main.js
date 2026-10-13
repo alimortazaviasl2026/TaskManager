@@ -6,7 +6,8 @@ const btnAddTask = $.querySelector(".add-task-btn");
 const tasksContainer = $.querySelector(".tasks-container");
 const taskCount = $.querySelector(".task-count");
 const radios = $.querySelectorAll('.radio')
-
+const delMusic = $.getElementById('send-music')
+const sendMusic = $.getElementById('del-music')
 
 
 
@@ -71,6 +72,7 @@ const actionAddTask = (title) => {
   
   
   generateTasks(tasks);
+  sendMusic.play()
   setLocal(tasks)  
   taskCount.innerHTML = `Added Tasks (${tasks.length})`;
   normalize();
@@ -107,7 +109,7 @@ const removeTask = (id) => {
   store.dispatch({ type: REMOVE_TASK, id });
   const tasks = store.getState();
   generateTasks(tasks);
- 
+  delMusic.play()
   setLocal(tasks)  
   taskCount.innerHTML = `Added Tasks (${tasks.length})`;
   normalize();
