@@ -147,15 +147,15 @@ const getTime = () => {
 
 
 
-// window.addEventListener('load', () => {
-//     const tasks = JSON.parse(localStorage.getItem('tasks'));
+window.addEventListener('load', () => {
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
 
-//     if (tasks) {
-//         generateTasks(tasks);
-//         setNewDataToStore(tasks);
-//         taskCount.innerHTML = `Added Tasks (${tasks.length})`;
-//     }
-// });
+    if (tasks) {
+        generateTasks(tasks);
+        setNewDataToStore(tasks);
+        taskCount.innerHTML = `Added Tasks (${tasks.length})`;
+    }
+});
 
 const setNewDataToStore = (tasks) => {
   store.dispatch({type:'SET_TASKS' , tasks })
