@@ -1,4 +1,5 @@
-import { ADD_TASK, DO_TASK, REMOVE_TASK } from "../Redux/taskActionType.js";
+import { addTask, DoTaskAction, getAllTasks, removeAllTasks, removeTaskAction, setTasks } from "../Redux/actionCreators.js";
+import { ADD_TASK, DO_TASK, GET_ALL_TASKS, REMOVE_ALL_TASKS, REMOVE_TASK, SET_TASKS } from "../Redux/taskActionType.js";
 
 const $ = document;
 const inputTask = $.querySelector(".add-task-input");
@@ -8,6 +9,7 @@ const taskCount = $.querySelector(".task-count");
 const radios = $.querySelectorAll('.radio')
 const delMusic = $.getElementById('send-music')
 const sendMusic = $.getElementById('del-music')
+const btnDelAllTasks = $.querySelector('.btn-del-all-tasks')
 
 
 
@@ -44,11 +46,14 @@ const taskReducer = (tasks = [], action) => {
       return updateTasks;
      
     }
-    case "SET_TASKS" : {
+    case SET_TASKS : {
       return action.tasks
     }
-    case "GET_ALL_TASKS" : {
+    case GET_ALL_TASKS : {
       return tasks
+    }
+    case REMOVE_ALL_TASKS : {
+      return []
     }
     default: return tasks
   }
@@ -67,12 +72,10 @@ const handleAddTask = () => {
 };
 
 const actionAddTask = (title) => {
-  store.dispatch({ type: ADD_TASK, title });
+  store.dispatch(addTask(title));
   const tasks = store.getState();
-  
-  
-  generateTasks(tasks);
   sendMusic.play()
+  generateTasks(tasks);
   setLocal(tasks)  
   taskCount.innerHTML = `Added Tasks (${tasks.length})`;
   normalize();
@@ -106,13 +109,13 @@ const generateTasks = (tasks) => {
 };
 
 const removeTask = (id) => {
-  store.dispatch({ type: REMOVE_TASK, id });
+  store.dispatch(removeTaskAction(id));
   const tasks = store.getState();
   generateTasks(tasks);
   delMusic.play()
   setLocal(tasks)  
   taskCount.innerHTML = `Added Tasks (${tasks.length})`;
-  normalize();
+  
 };
 
 
@@ -123,12 +126,12 @@ const setLocal = (data) => {
 window.removeTask = removeTask;
 
 const doTask = (id) => {
-  store.dispatch({ type: DO_TASK, id });
+  store.dispatch(DoTaskAction(id));
   const tasks = store.getState();
  
   generateTasks(tasks);
   setLocal(tasks)  
-  normalize();
+  
 };
 
 window.doTask = doTask;
@@ -159,11 +162,10 @@ window.addEventListener('load', () => {
     }
 });
 
-const setNewDataToStore = (tasks) => {
-  store.dispatch({type:'SET_TASKS' , tasks })
-  console.log(store.getState());
+const setNewDataToStore = (tasks) =>  store.dispatch(setTasks(tasks))
   
-}
+  
+
 
 
 
@@ -172,7 +174,7 @@ const setNewDataToStore = (tasks) => {
 radios.forEach(radio => {
    radio.addEventListener('change' , (e) => {
       const filterValue = e.target.value
-       store.dispatch({type:"GET_ALL_TASKS"})
+       store.dispatch(getAllTasks())
        let tasks = store.getState()
       
        if(filterValue === 'All'){
@@ -198,6 +200,14 @@ const filterInCompletedTasks = (tasks) => {
    generateTasks(inCompletedTasks)
 }
 
-
+const handleDeleteAllTasks = () => {
+   store.dispatch(removeAllTasks())
+   const tasks = store.getState()
+  generateTasks(tasks)
+  setLocal(tasks)
+  taskCount.innerHTML = `Added Tasks (${tasks.length})`;
+  
+}
 
 btnAddTask.addEventListener("click", handleAddTask);
+btnDelAllTasks.addEventListener('click' , handleDeleteAllTasks )

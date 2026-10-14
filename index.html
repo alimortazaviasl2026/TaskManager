@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>TASK-MANAGER</title>
     <link rel="stylesheet" href="styles/app.css">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
-
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXOkyVuRB-iDtaEsoAxeS3EvNgpjF493PCijc4CJuvnw&s=10">
 </head>
 <body class="position-relative ">
       
@@ -18,7 +18,7 @@
 
      <div class=" container-fluid">
       <div class="row">
-          <div class="col-12  col-lg-2  shadow-sm vh-100 ">
+          <div class="col-12 d-none d-lg-block col-lg-2  shadow-sm vh-100 ">
            <div class="text-center my-2">
                
 
@@ -35,9 +35,25 @@
                   <h3 class="name my-3"><i>ALI</i></h3>
                   <span class="email" style="font-size: 11px;"><i>Front-End Developer</i></span>
             </div>
-            <div class="d-block d-lg-none text-center mt-1">
-                 <span><i>filtering Tasks</i> </span>
-                  <form action="" class="p-2 flex-column flex-sm-row d-flex gap-3 justify-content-center  ">
+           
+          </div>
+          <div class="col-12 col-lg-8  shadow-sm mt-5">
+             <div class="taskManager p-3 mx-auto w-100   text-center my-4">
+                  <div class="title">
+                     <h4>
+                         <i>My Tasks</i>
+                     </h4>
+                    </div>
+                     <div class="task-actions d-flex my-4 justify-content-between gap-2 " >
+                         <div class="w-75">
+                            <input type="text" class="form-control border  add-task-input " placeholder="Type your task here!">
+                        </div>
+                        <button class="btn btn-primary w-25 btn-sm add-task-btn"><img src="imgs/plus.svg" alt=""> add</button>
+                        <button class="btn btn-sm btn-warning btn-del-all-tasks" title="delete all tasks"><i class='fa-solid fa-trash-can'></i></button>
+                     </div>
+                      <div class="d-block d-lg-none text-center mt-1">
+                 <span class="mt-5 d-block"><i>filtering Tasks</i> </span>
+                  <form action="" class="p-2 flex-row  d-flex gap-3 justify-content-center  ">
               
                  <div class="my-2">
                     <i class="fa-solid fa-layer-group"></i>
@@ -59,21 +75,6 @@
              
              
             </div>
-          </div>
-          <div class="col-12 col-lg-8  shadow-sm mt-5">
-             <div class="taskManager p-3 mx-auto w-75   text-center my-4">
-                  <div class="title">
-                     <h4>
-                         <i>My Tasks</i>
-                     </h4>
-                    </div>
-                     <div class="task-actions d-flex my-4 justify-content-between gap-2 " >
-                         <div class="w-100">
-                            <input type="text" class="form-control border  add-task-input " placeholder="Type your task here!">
-                        </div>
-                        <button class="btn btn-primary w-50 btn-sm add-task-btn"><img src="imgs/plus.svg" alt=""> add</button>
-                     </div>
-
                         
             </div>
                 
@@ -85,7 +86,7 @@
                     
 
           </div>
-          <div class="col-12 col-lg-2 shadow d-none">
+          <div class=" col-lg-2 shadow d-none d-lg-block ">
               <form action="" class="p-2 ">
                 <label for="" class="form-label"> <i class="fa-solid fa-filter "></i> filtering Tasks </label>
                  <div class="my-2">
